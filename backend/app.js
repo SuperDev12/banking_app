@@ -18,6 +18,8 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/accounts', authMiddleware, accountRoutes);
+app.use('/api/customer-login-details', customerLoginDetailsRoutes);
+app.use('/api/customer-employment-details', customerEmploymentDetailsRoutes);
 
 app.post('/api/customers', async (req, res) => {
   try {

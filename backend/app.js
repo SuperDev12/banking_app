@@ -19,4 +19,14 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/accounts', authMiddleware, accountRoutes);
 
+app.post('/api/customers', async (req, res) => {
+  try {
+    const newCustomer = new Customer(req.body);
+    await newCustomer.save();
+    res.status(201).json({ message: 'Customer created successfully' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 module.exports = app;
